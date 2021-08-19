@@ -22,13 +22,13 @@ public protocol URLImageInMemoryStoreType: URLImageStoreType {
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension URLImageInMemoryStoreType {
 
-    func getImage(_ identifier: String) -> CGImage? {
+    func getImage(_ identifier: String) -> [CGImage]? {
         let transientImage: TransientImage? = getImage([ .identifier(identifier) ])
-        return transientImage?.cgImage
+        return transientImage?.cgImages
     }
 
-    func getImage(_ url: URL) -> CGImage? {
+    func getImage(_ url: URL) -> [CGImage]? {
         let transientImage: TransientImage? = getImage([ .url(url) ])
-        return transientImage?.cgImage
+        return transientImage?.cgImages
     }
 }

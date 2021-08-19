@@ -12,8 +12,8 @@ import CoreGraphics
 public struct ImageInfo {
 
     /// Decoded image
-    public var cgImage: CGImage {
-        proxy.cgImage
+    public var cgImages: [CGImage] {
+        proxy.cgImages
     }
 
     /// Image size in pixels.

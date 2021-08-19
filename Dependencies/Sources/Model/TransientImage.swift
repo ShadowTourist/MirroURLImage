@@ -13,9 +13,13 @@ import ImageDecoder
 /// Temporary representation used after decoding an image from data or file on disk and before creating an image object for display.
 @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public struct TransientImage {
-
-    public var cgImage: CGImage {
-        proxy.cgImage
+    
+    public var cgImages: [CGImage] {
+        return proxy.cgImages
+    }
+    
+    public var animationDuration: TimeInterval {
+        return proxy.animationDuration
     }
 
     public let info: ImageInfo
@@ -50,23 +54,29 @@ final class CGImageProxy {
         self.decoder = decoder
         self.maxPixelSize = maxPixelSize
     }
-
-    var cgImage: CGImage {
-        if decodedCGImage == nil {
-            decodeImage()
+    
+    var cgImages: [CGImage] {
+        if decodedCGImages == nil {
+            decodeImages()
         }
 
-        return decodedCGImage!
+        return decodedCGImages!
     }
-
-    private var decodedCGImage: CGImage?
-
-    private func decodeImage() {
+    
+    private var decodedCGImages: [CGImage]?
+    
+    private func decodeImages() {
         if let sizeForDrawing = maxPixelSize {
             let decodingOptions = ImageDecoder.DecodingOptions(mode: .asynchronous, sizeForDrawing: sizeForDrawing)
-            decodedCGImage = decoder.createFrameImage(at: 0, decodingOptions: decodingOptions)!
+            decodedCGImages = (0..<decoder.frameCount).map { decoder.createFrameImage(at: $0, decodingOptions: decodingOptions)! }
         } else {
-            decodedCGImage = decoder.createFrameImage(at: 0)!
+            decodedCGImages = (0..<decoder.frameCount).map { decoder.createFrameImage(at: $0)! }
         }
+    }
+    
+    var animationDuration: TimeInterval {
+        return (0..<decoder.frameCount)
+            .map { decoder.frameDuration(at: $0) ?? 0 }
+            .reduce(.zero, +)
     }
 }

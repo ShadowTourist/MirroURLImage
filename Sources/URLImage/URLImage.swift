@@ -73,7 +73,7 @@ public extension URLImage {
          @ViewBuilder empty: @escaping () -> Empty,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -90,7 +90,7 @@ public extension URLImage {
          @ViewBuilder empty: @escaping () -> Empty,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image, _ info: ImageInfo) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView, _ info: ImageInfo) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -111,7 +111,7 @@ public extension URLImage where Empty == EmptyView {
          identifier: String? = nil,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -125,7 +125,7 @@ public extension URLImage where Empty == EmptyView {
          identifier: String? = nil,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image, _ info: ImageInfo) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView, _ info: ImageInfo) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -144,7 +144,7 @@ public extension URLImage where Empty == EmptyView,
     init(_ url: URL,
          identifier: String? = nil,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -157,7 +157,7 @@ public extension URLImage where Empty == EmptyView,
     init(_ url: URL,
          identifier: String? = nil,
          @ViewBuilder failure: @escaping (_ error: Error, _ retry: @escaping () -> Void) -> Failure,
-         @ViewBuilder content: @escaping (_ image: Image, _ info: ImageInfo) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView, _ info: ImageInfo) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -176,7 +176,7 @@ public extension URLImage where Empty == EmptyView,
     init(_ url: URL,
          identifier: String? = nil,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
-         @ViewBuilder content: @escaping (_ image: Image) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -189,7 +189,7 @@ public extension URLImage where Empty == EmptyView,
     init(_ url: URL,
          identifier: String? = nil,
          @ViewBuilder inProgress: @escaping (_ progress: Float?) -> InProgress,
-         @ViewBuilder content: @escaping (_ image: Image, _ info: ImageInfo) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView, _ info: ImageInfo) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -208,7 +208,7 @@ public extension URLImage where Empty == EmptyView,
 
     init(_ url: URL,
          identifier: String? = nil,
-         @ViewBuilder content: @escaping (_ image: Image) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView) -> Content) {
 
         self.init(url,
                   identifier: identifier,
@@ -220,7 +220,7 @@ public extension URLImage where Empty == EmptyView,
 
     init(_ url: URL,
          identifier: String? = nil,
-         @ViewBuilder content: @escaping (_ image: Image, _ info: ImageInfo) -> Content) {
+         @ViewBuilder content: @escaping (_ image: URLImageView, _ info: ImageInfo) -> Content) {
 
         self.init(url,
                   identifier: identifier,
